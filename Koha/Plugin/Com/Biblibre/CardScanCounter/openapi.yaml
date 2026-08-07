@@ -1,0 +1,44 @@
+# Note: This is a full specification, but only paths are actually used.
+# Any refs are rewritten as absolute file uris.
+---
+swagger: "2.0"
+paths:
+  /scan:
+    get:
+      description: Serve the anonymous OPAC kiosk page used to scan patron cards.
+      operationId: getScanPage
+      produces:
+        - text/html
+      responses:
+        200:
+          description: Kiosk HTML page
+      tags:
+        - footfall
+      x-mojo-to: Com::Biblibre::CardScanCounter::Controller::Scan#page
+    post:
+      description: Record an anonymous card scan for footfall counting.
+      operationId: postScan
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: ./openapi/definitions.yaml#/scan_request
+      produces:
+        - application/json
+      responses:
+        204:
+          description: >
+            Scan processed. The response is intentionally identical whether
+            the scan was recorded, ignored as a duplicate, or ignored because
+            the card is unknown to Koha.
+        400:
+          description: Bad request - missing cardnumber
+          schema:
+            $ref: ./openapi/definitions.yaml#/error
+      tags:
+        - footfall
+      x-mojo-to: Com::Biblibre::CardScanCounter::Controller::Scan#scan
+info:
+  title: Koha REST API Card Scan Counter Plugin
+  version: "1"

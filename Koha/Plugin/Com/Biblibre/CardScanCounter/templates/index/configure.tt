@@ -1,0 +1,51 @@
+[%- TRY %]
+    [%- PROCESS "Koha/Plugin/Com/Biblibre/CardScanCounter/i18n/${LANG}.inc" %]
+[%- CATCH %]
+    [% PROCESS "Koha/Plugin/Com/Biblibre/CardScanCounter/i18n/default.inc" %]
+[%- END %]
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha: Card Scan Counter Plugin: Configuration</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body>
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'cat-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">[% T.home | html %]</a> &rsaquo; <a href="/cgi-bin/koha/plugins/plugins-home.pl">[% T.plugins_menu | html %]</a> &rsaquo; Card Scan Counter &rsaquo; [% T.configuration | html %]</div>
+
+<div class="container-fluid">
+    <h3>Card Scan Counter: [% T.configuration | html %]</h3>
+
+    <form method="get" id="cardscancounter_plugin_config">
+        <div class="container">
+            <div class="row mb-3">
+                <label for="dedup_interval_minutes" class="col-sm-3 col-form-label">[% T.dedup_label | html %]</label>
+                <div class="col-sm-2">
+                    <input type="number" min="1" max="1439" name="dedup_interval_minutes" id="dedup_interval_minutes" value="[% dedup_interval_minutes | html %]" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <span class="hint">[% T.dedup_hint | html %]</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="retention_days" class="col-sm-3 col-form-label">[% T.retention_label | html %]</label>
+                <div class="col-sm-2">
+                    <input type="number" min="1" name="retention_days" id="retention_days" value="[% retention_days | html %]" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <span class="hint">[% T.retention_hint | html %]</span>
+                </div>
+            </div>
+            <input type="hidden" name="class" value="[% CLASS %]"/>
+            <input type="hidden" name="method" value="[% METHOD %]"/>
+            <input type="hidden" name="save" value="1"/>
+            <div class="row">
+                <div class="col-sm-8">
+                    <button type="submit" class="btn btn-primary w-100">[% T.save_button | html %]</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+[% INCLUDE 'intranet-bottom.inc' %]

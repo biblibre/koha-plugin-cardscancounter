@@ -1,0 +1,5 @@
+---
+scan_request:
+  $ref: ./definitions/scan_request.yaml
+error:
+  $ref: ./definitions/error.yaml

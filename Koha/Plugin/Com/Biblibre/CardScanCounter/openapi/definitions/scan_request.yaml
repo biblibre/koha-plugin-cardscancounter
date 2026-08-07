@@ -1,0 +1,8 @@
+---
+type: object
+required:
+  - cardnumber
+properties:
+  cardnumber:
+    description: Cardnumber read from the patron's card by the barcode or RFID reader
+    type: string
