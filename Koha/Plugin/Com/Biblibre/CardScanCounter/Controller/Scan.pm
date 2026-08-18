@@ -88,17 +88,33 @@ sub _kiosk_html {
 <head>
   <meta charset="utf-8">
   <title>[% T.kiosk_title | html %]</title>
-  <link rel="stylesheet" type="text/css" href="/opac-tmpl/bootstrap/css/opac.css">
   <style>
-    /* Isolated page (no OPAC header/navigation, so a patron can't wander
-       off from the kiosk), but built with the same form and button
-       classes as the rest of the OPAC, so it still looks like Koha. */
     html, body { height: 100%; margin: 0; }
     body {
       display: flex; align-items: center; justify-content: center;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        "Noto Sans", "Liberation Sans", Arial, sans-serif;
     }
     .kiosk-box { width: 100%; max-width: 30rem; padding: 2rem; text-align: center; }
     #message { font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .mb-3 { margin-bottom: 1rem; }
+    .text-start { text-align: left; }
+    .form-label { display: block; margin-bottom: .5rem; font-weight: 500; }
+    .form-control {
+      display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem;
+      line-height: 1.5; color: #212529; background-color: #fff;
+      border: 1px solid #ced4da; border-radius: .375rem; box-sizing: border-box;
+    }
+    .form-control:focus {
+      border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
+    }
+    .btn {
+      display: inline-block; padding: .375rem .75rem; font-size: 1rem;
+      border-radius: .375rem; border: 1px solid transparent; cursor: pointer;
+    }
+    .btn-primary { color: #fff; background-color: #0d6efd; border-color: #0d6efd; }
+    .btn-primary:hover { background-color: #0b5ed7; border-color: #0a58ca; }
+    .w-100 { width: 100%; }
   </style>
 </head>
 <body>
